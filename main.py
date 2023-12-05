@@ -156,7 +156,7 @@ def move():
     rec_re = re.compile(r"\sRec\d?\s", re.I)
 
     # catches all documents with info (general information) or citizenship in the name
-    info_re = re.compile(r"\sInfo\d?\s|\sCitizenship\d?\s", re.I)
+    info_re = re.compile(r"\sInfo\d?\s|\sCitizenship\d?\s|\sAppeal\d?\s", re.I)
 
     # create a dict to match folder names and regex patterns
     document_types = {"HS": high_school_re, "College": college_re, "Waivers": waiver_re, "Recommendations": rec_re, "Misc": info_re}
