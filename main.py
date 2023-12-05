@@ -60,53 +60,7 @@ def clean_transcripts():
         except Exception as e:
                 print("An occurred while moving the file:", str(e))
 
-                
-"""
----DEFUNCT---
-Function prep_noid
-This function is run at the end of the day and creates archives of the NOID folder (for send out via Teams) and the Recommendations
-folder (for send out via email).
-variable today gets today's date and time
-variable day formats today specifically for date only, in the day(numberical) month(abbv name) year format. ex: 16Feb2022
-"""
-def prep_noid():
-    # get today's date and formate is as ex: 16Feb2022
-    today = date.today()
-    day = today.strftime("%d%b%Y")
-
-    # create a folder with today's date as the name. This will be the parent folder for all of today's documents.
-    try:
-        os.mkdir("c:\\users\\cjj714\\desktop\\transcripts\\" + day)
-        
-    # if folder already exits, contiue
-    except Exception:
-        print("That folder already exits. All good.")
-
-    # from the NOID folder, creates an archive labeled with today's date and NOID. ex: 16Feb2022NOID.zip
-    # And then empties and removes the source folder.
-    try:
-        shutil.make_archive("c:\\users\\cjj714\\desktop\\transcripts\\" + day + "NOID",
-                            "zip", "c:\\users\\cjj714\\desktop\\transcripts\\noid\\")
-        shutil.rmtree("c:\\users\\cjj714\\desktop\\transcripts\\noid\\")
-        print("NOID Zip created and source folder cleared.")
-        
-    # in the rare case we don't have any NOIDs, print the message and continue
-    except Exception:
-        print("NOID folder doesn't exists. Oh well, carry on.")
-
-    # from the Recommendations folder, creates an archive labeled with today's date and Recommendations. ex: 16Feb2022Recommendations.zip
-    # And then empties and removes the source folder.
-    try:
-        shutil.make_archive("c:\\users\\cjj714\\desktop\\transcripts\\" + day + "Recommendations", "zip",
-                            "c:\\users\\cjj714\\desktop\\transcripts\\Recommendations\\")
-        shutil.rmtree("c:\\users\\cjj714\\desktop\\transcripts\\Recommendations\\")
-        
-    # in the rare case that the Recommendations folder can't be removed (which isn't a big deal), continue
-    except Exception:
-        print("Can't remove recommendation folder... Whatever. Onward!")
-    print("Recommendation Zip created and source folder cleared.")
-
-
+           
 """
 helper function to detect pre-existing files and rename them using the naming convention
 """
@@ -369,13 +323,6 @@ def prompting():
     if choice == "1":
         clean_transcripts()
         prompting()
-
-    ''' Defucnt
-    # runs the prep_noid function and redisplays the menu
-    if choice == "2":
-        prep_noid()
-        prompting()
-    '''
 
     # runs the move function and redisplays the menu
     if choice == "2":
